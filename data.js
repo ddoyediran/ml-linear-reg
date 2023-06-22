@@ -49,10 +49,38 @@ const loadData = async () => {
       trainingDataset.consume.push(mapData[i].ys.consume);
     }
 
-    console.log(trainingDataset);
+    //console.log(trainingDataset);
+
+    return trainingDataset;
   } catch (e) {
     console.error(e.message);
   }
 };
 
-loadData();
+// Split data to training and testing dataset and then shuffle
+// Things to improve: Figure out a way to split efficiently if we have more than 2
+// columns without hardcoding it manually
+/**
+ * @param {}
+ * @returns {Object} dataset
+ */
+export const splitData = async () => {
+  const allDatasets = await loadData();
+
+  let datasetLength = allDatasets.distance.length;
+
+  let dataset = {
+    trainDistance: allDatasets.distance.slice(0, datasetLength * 0.75),
+    trainConsume: allDatasets.consume.slice(0, datasetLength * 0.75),
+    testDistance: allDatasets.distance.slice(
+      datasetLength * 0.75,
+      datasetLength + 1
+    ),
+    testConsume: allDatasets.consume.slice(
+      datasetLength * 0.75,
+      datasetLength + 1
+    ),
+  };
+
+  return dataset;
+};
