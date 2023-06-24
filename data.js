@@ -7,7 +7,9 @@ const loadData = async () => {
   try {
     //   const dataUrl = "fuelcar.csv";
 
-    const dataUrl = process.env.DATA_URL;
+    //const dataUrl = process.env.DATA_URL;
+    const dataUrl =
+      "https://raw.githubusercontent.com/ddoyediran/ml-linear-reg/main/fuel-car.csv";
 
     const trainingData = tf.data.csv(dataUrl, {
       columnConfigs: {
