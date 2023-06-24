@@ -1,6 +1,6 @@
-import dotenv from "dotenv";
-dotenv.config();
-import * as tf from "@tensorflow/tfjs";
+// import dotenv from "dotenv";
+// dotenv.config();
+// import * as tf from "@tensorflow/tfjs";
 
 // Load data from the csv file where consume is the label
 const loadData = async () => {
@@ -18,6 +18,7 @@ const loadData = async () => {
     });
 
     // Load the number of features (in this case only the first column will be used as the feature)
+    // Find a way to export this to the index.js file
     const numberOfFeatures = (await trainingData.columnNames()).length - 1;
     //const numFeatures = (await csvDataset.columnNames()).length - 1;
 
@@ -50,6 +51,9 @@ const loadData = async () => {
     }
 
     //console.log(trainingDataset);
+    // console.log(JSON.parse(JSON.stringify(trainingDataset)));
+
+    // return JSON.parse(JSON.stringify(trainingDataset));
 
     return trainingDataset;
   } catch (e) {
